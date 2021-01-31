@@ -1,0 +1,62 @@
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import { StyleSheet, Text, View, Button, Alert, TextInput } from 'react-native';
+
+export default function Calculator() {
+
+  const [firstNumber, setFirstNumber] = React.useState('');
+  const [secondNumber, setSecondNumber] = React.useState('');
+  const [result, setResult] = React.useState(0);
+
+  const PlusbuttonPressed = () => {
+    setResult(parseFloat(firstNumber) + parseFloat(secondNumber));
+}
+
+  const MinusbuttonPressed = () => {
+    setResult(parseFloat(firstNumber) - parseFloat(secondNumber));
+}
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.container}>
+      <Text>Result: {result}</Text>
+      <TextInput 
+      keyboardType="numeric"
+      onChangeText={firstNumber => setFirstNumber(firstNumber)}
+      value={String(firstNumber)}
+      style={{width:200, borderColor: 'black', borderWidth: 1}}
+      />
+      <TextInput 
+      keyboardType="numeric"
+      onChangeText={secondNumber => setSecondNumber(secondNumber)}
+      value={String(secondNumber)}
+      style={{width:200, borderColor: 'black', borderWidth: 1}}
+      />
+      </View>
+      <View style={styles.buttoncontainer}>
+        <Button onPress={PlusbuttonPressed} title="+"></Button>
+        <Button onPress={MinusbuttonPressed} title="-"></Button>
+        <StatusBar style="auto" />
+    </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
+
+  buttoncontainer: {
+      flex: 1,
+      width: 125,
+      flexDirection: 'row',
+      backgroundColor: '#fff',
+      alignItems: 'flex-start',
+      justifyContent: 'space-around',
+      padding: 20,
+    },
+  });
